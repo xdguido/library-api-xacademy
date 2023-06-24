@@ -1,5 +1,5 @@
-import helloWorld from './helloWorld.routes';
+import libraryRoute from './library.routes';
 
 export default {
-    helloWorld
+    libraryRoute
 };

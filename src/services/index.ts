@@ -1,3 +1,3 @@
-import helloWorldServices from './helloWorld.services';
+import libraryService from './library.services';
 
-export { helloWorldServices };
+export { libraryService };

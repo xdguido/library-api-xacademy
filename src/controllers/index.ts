@@ -1,3 +1,3 @@
-import helloWorldController from './helloWorld.controller';
+import libraryControllers from './library.controllers';
 
-export { helloWorldController };
+export { libraryControllers };

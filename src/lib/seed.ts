@@ -1,22 +1,33 @@
 import { sequelize } from '../config/db';
-import { User } from '../models';
+import { seedProvider } from '../providers';
 
 export async function seed() {
     try {
         await sequelize.sync({ force: true }); // Drops existing tables and re-creates them
 
-        const usersData = [
-            { id: 1, firstName: 'John', lastName: 'Doe' },
-            { id: 2, firstName: 'Jane', lastName: 'Doe' }
-        ];
+        const usersData = [{ username: 'admin', password: 'admin' }];
+        await seedProvider.createUsers(usersData);
 
-        await Promise.all(usersData.map((userData) => User.create(userData)));
+        const librariesData = [
+            {
+                name: 'Test Library',
+                location: 'av. Argentina 1000',
+                phone: '123-123-123'
+            }
+        ];
+        await seedProvider.createLibraries(librariesData);
+
+        const booksData = [
+            {
+                title: 'The Lord of the Rings - The fellowship of the ring',
+                author: 'J. R. R. Tolkien',
+                year: '1954'
+            }
+        ];
+        await seedProvider.createBooks(booksData);
 
         console.log('Database seeded successfully!');
     } catch (error) {
         console.error('Error seeding the database:', error);
     }
-    // finally {
-    //     await sequelize.close(); // Close the database connection
-    // }
 }
