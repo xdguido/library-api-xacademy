@@ -1,3 +1,5 @@
-import { User } from './HelloWorld';
+import { User, IUser } from './User';
+import { Library, ILibrary } from './Library';
+import { Book, IBook } from './Book';
 
-export { User };
+export { User, Library, Book, IUser, ILibrary, IBook };

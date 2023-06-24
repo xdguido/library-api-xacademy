@@ -7,24 +7,27 @@ import {
 } from 'sequelize';
 import { sequelize } from '../config/db';
 
-interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
-    // Some fields are optional when calling UserModel.create() or UserModel.build()
-    id: CreationOptional<number>;
-    firstName: string;
-    lastName: string;
+export interface IUser {
+    id?: CreationOptional<number>;
+    username: string;
+    password: string;
 }
 
-export const User = sequelize.define<UserModel>('User', {
+interface UserModel
+    extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>>,
+        IUser {}
+
+export const User = sequelize.define<UserModel, IUser>('User', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    firstName: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastName: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false
     }
