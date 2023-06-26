@@ -1,25 +1,12 @@
-import {
-    Model,
-    DataTypes,
-    CreationOptional,
-    InferAttributes,
-    InferCreationAttributes
-} from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { sequelize } from '../config/db';
-
-export interface ILibrary {
-    id?: CreationOptional<number>;
-    name: string;
-    location: string;
-    phone: string;
-    deleted?: CreationOptional<boolean>;
-}
+import type { LibraryTypes } from '../types';
 
 interface LibraryModel
     extends Model<InferAttributes<LibraryModel>, InferCreationAttributes<LibraryModel>>,
-        ILibrary {}
+        LibraryTypes {}
 
-export const Library = sequelize.define<LibraryModel, ILibrary>('Library', {
+export const Library = sequelize.define<LibraryModel, LibraryTypes>('Library', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

@@ -1,5 +1,5 @@
-import { User, IUser } from './User';
-import { Library, ILibrary } from './Library';
-import { Book, IBook } from './Book';
+import { User } from './User';
+import { Library } from './Library';
+import { Book } from './Book';
 
-export { User, Library, Book, IUser, ILibrary, IBook };
+export { User, Library, Book };

@@ -4,7 +4,7 @@ type ErrorConfig = {
 
 export enum ErrorCode {
     // status 400-499
-    InvalidInput = 'Invalid input', // 400
+    BadRequest = 'BadRequest', // 400
     Unauthenticated = 'Unauthenticated', // 401
     Forbidden = 'Forbidden', // 403
     NotFound = 'NotFound', // 404
@@ -14,7 +14,7 @@ export enum ErrorCode {
 }
 
 const errorConfigMap: Record<ErrorCode, ErrorConfig> = {
-    [ErrorCode.InvalidInput]: {
+    [ErrorCode.BadRequest]: {
         status: 400
     },
     [ErrorCode.Unauthenticated]: {
@@ -36,9 +36,9 @@ const errorConfigMap: Record<ErrorCode, ErrorConfig> = {
 
 export class Exception extends Error {
     status: number;
-    metaData?: string;
+    metaData?: object;
 
-    constructor(code: ErrorCode, metaData?: string) {
+    constructor(code: ErrorCode, metaData?: object) {
         super(code);
         Object.setPrototypeOf(this, new.target.prototype);
         this.name = code;

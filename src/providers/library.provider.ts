@@ -1,7 +1,8 @@
-import { Book, Library, IBook, ILibrary } from '../models';
+import { Book, Library } from '../models';
+import type { LibraryTypes, BookTypes } from '../types';
 
-const createLib = async (library: ILibrary) => {
-    return await Library.create(library);
+const createLib = async (libraryData: LibraryTypes) => {
+    return await Library.create(libraryData);
 };
 
 const getAll = async () => {
@@ -15,8 +16,8 @@ const getOne = async (libId: string) => {
     return await Library.findByPk(libId, { include: Book });
 };
 
-const edit = async (library: ILibrary, libId: string) => {
-    return await Library.update(library, {
+const edit = async (libraryData: LibraryTypes, libId: string) => {
+    return await Library.update(libraryData, {
         where: { id: libId },
         validate: true
     });
@@ -32,7 +33,7 @@ const remove = async (libId: string) => {
     );
 };
 
-const createBook = async (book: IBook, libId: string) => {
+const createBook = async (book: BookTypes, libId: string) => {
     const libIdToNumber = Number(libId);
     return await Book.create({ ...book, libId: libIdToNumber });
 };

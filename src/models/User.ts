@@ -1,23 +1,12 @@
-import {
-    Model,
-    DataTypes,
-    CreationOptional,
-    InferAttributes,
-    InferCreationAttributes
-} from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { sequelize } from '../config/db';
-
-export interface IUser {
-    id?: CreationOptional<number>;
-    username: string;
-    password: string;
-}
+import { UserTypes } from '../types';
 
 interface UserModel
     extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>>,
-        IUser {}
+        UserTypes {}
 
-export const User = sequelize.define<UserModel, IUser>('User', {
+export const User = sequelize.define<UserModel, UserTypes>('User', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

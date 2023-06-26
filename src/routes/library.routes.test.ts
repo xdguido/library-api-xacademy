@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../app';
-import { ILibrary } from '../models';
+import type { LibraryTypes } from '../types';
 import { sequelize } from '../config/db';
 
 describe('Library Routes', () => {
@@ -14,7 +14,7 @@ describe('Library Routes', () => {
     let createdLibraryId: number;
 
     it('POST /library should create a library', async () => {
-        const libraryData: ILibrary = {
+        const libraryData: LibraryTypes = {
             name: 'Test Library',
             location: 'Test Location',
             phone: '123-123-123'

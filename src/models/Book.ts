@@ -1,28 +1,13 @@
-import {
-    Model,
-    DataTypes,
-    CreationOptional,
-    InferAttributes,
-    InferCreationAttributes
-} from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { Library } from './Library';
-
-export interface IBook {
-    id?: CreationOptional<number>;
-    isbn?: CreationOptional<number>;
-    title: string;
-    author: string;
-    year: string;
-    deleted?: CreationOptional<boolean>;
-    libId?: CreationOptional<number>;
-}
+import { BookTypes } from '../types';
 
 interface BookModel
     extends Model<InferAttributes<BookModel>, InferCreationAttributes<BookModel>>,
-        IBook {}
+        BookTypes {}
 
-export const Book = sequelize.define<BookModel, IBook>('Book', {
+export const Book = sequelize.define<BookModel, BookTypes>('Book', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
