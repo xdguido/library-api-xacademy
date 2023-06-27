@@ -37,6 +37,16 @@ const remove = async (libId: string) => {
     }
 };
 
+const restore = async (libId: string) => {
+    await libraryProvider.restore(libId);
+    const library = await libraryProvider.getOne(libId);
+    if (library) {
+        return { message: 'Library restored successfully' };
+    } else {
+        throw new Exception(ErrorCode.NotFound, { message: 'Library not found' });
+    }
+};
+
 const createBook = async (book: BookTypes, libId: string) => {
     const library = await libraryProvider.getOne(libId);
     if (library) {
@@ -46,4 +56,4 @@ const createBook = async (book: BookTypes, libId: string) => {
     }
 };
 
-export default { createLib, getAll, getOne, edit, remove, createBook };
+export default { createLib, getAll, getOne, edit, remove, restore, createBook };

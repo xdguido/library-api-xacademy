@@ -45,7 +45,17 @@ const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { libId } = req.params;
         const removedLib = await libraryService.remove(libId);
-        res.status(204).json(removedLib);
+        res.status(200).json(removedLib);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const restore = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { libId } = req.params;
+        const removedLib = await libraryService.restore(libId);
+        res.status(200).json(removedLib);
     } catch (err) {
         next(err);
     }
@@ -62,4 +72,4 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default { createLib, getAll, getOne, edit, remove, createBook };
+export default { createLib, getAll, getOne, edit, remove, restore, createBook };

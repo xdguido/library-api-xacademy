@@ -9,6 +9,7 @@ router.get('/', libraryControllers.getAll);
 router.get('/:libId', libraryControllers.getOne);
 router.put('/:libId', validate(librarySchema, true), libraryControllers.edit);
 router.delete('/:libId', libraryControllers.remove);
+router.get('/:libId/restore', libraryControllers.restore);
 router.post('/:libId/books', validate(bookSchema, true), libraryControllers.createBook);
 
 export default router;

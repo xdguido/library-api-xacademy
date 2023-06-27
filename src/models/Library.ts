@@ -6,18 +6,23 @@ interface LibraryModel
     extends Model<InferAttributes<LibraryModel>, InferCreationAttributes<LibraryModel>>,
         LibraryTypes {}
 
-export const Library = sequelize.define<LibraryModel, LibraryTypes>('Library', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+export const Library = sequelize.define<LibraryModel, LibraryTypes>(
+    'Library',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        name: { type: DataTypes.STRING, allowNull: false },
+        location: { type: DataTypes.STRING, allowNull: false },
+        phone: { type: DataTypes.STRING, allowNull: false },
+        deleted: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        }
     },
-    name: { type: DataTypes.STRING, allowNull: false },
-    location: { type: DataTypes.STRING, allowNull: false },
-    phone: { type: DataTypes.STRING, allowNull: false },
-    deleted: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    }
-});
+    // paranoid tables allow us to soft-delete records
+    { paranoid: true }
+);

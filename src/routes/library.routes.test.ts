@@ -66,7 +66,7 @@ describe('Library Routes', () => {
     it('DELETE /library/:libId should delete a library', async () => {
         const response = await request(app).delete(`/library/${createdLibraryId}`);
 
-        expect(response.status).toBe(204);
+        expect(response.status).toBe(200);
 
         const library = await request(app).get('/library');
 

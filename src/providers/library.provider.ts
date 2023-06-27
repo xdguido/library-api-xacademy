@@ -7,7 +7,6 @@ const createLib = async (libraryData: LibraryTypes) => {
 
 const getAll = async () => {
     return await Library.findAll({
-        where: { deleted: false },
         include: Book
     });
 };
@@ -24,13 +23,15 @@ const edit = async (libraryData: LibraryTypes, libId: string) => {
 };
 
 const remove = async (libId: string) => {
-    return await Library.update(
-        { deleted: true },
-        {
-            where: { id: libId },
-            validate: true
-        }
-    );
+    return await Library.destroy({
+        where: { id: libId }
+    });
+};
+
+const restore = async (libId: string) => {
+    return await Library.restore({
+        where: { id: libId }
+    });
 };
 
 const createBook = async (book: BookTypes, libId: string) => {
@@ -38,4 +39,4 @@ const createBook = async (book: BookTypes, libId: string) => {
     return await Book.create({ ...book, libId: libIdToNumber });
 };
 
-export default { createLib, getAll, getOne, edit, remove, createBook };
+export default { createLib, getAll, getOne, edit, remove, restore, createBook };
