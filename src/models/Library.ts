@@ -16,12 +16,7 @@ export const Library = sequelize.define<LibraryModel, LibraryTypes>(
         },
         name: { type: DataTypes.STRING, allowNull: false },
         location: { type: DataTypes.STRING, allowNull: false },
-        phone: { type: DataTypes.STRING, allowNull: false },
-        deleted: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        }
+        phone: { type: DataTypes.STRING, allowNull: false }
     },
     // paranoid tables allow us to soft-delete records
     { paranoid: true }

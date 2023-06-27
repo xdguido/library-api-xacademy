@@ -18,12 +18,7 @@ export const Book = sequelize.define<BookModel, BookTypes>(
         isbn: { type: DataTypes.INTEGER, allowNull: true, unique: true },
         title: { type: DataTypes.STRING, allowNull: false },
         author: { type: DataTypes.STRING, allowNull: false },
-        year: { type: DataTypes.STRING, allowNull: false },
-        deleted: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        }
+        year: { type: DataTypes.STRING, allowNull: false }
     },
     // paranoid tables allow us to soft-delete records
     { paranoid: true }

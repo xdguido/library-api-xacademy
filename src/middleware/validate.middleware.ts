@@ -8,8 +8,7 @@ export const librarySchema = z
         id: z.number().optional(),
         name: z.string().transform((val) => xss(val)),
         location: z.string().transform((val) => xss(val)),
-        phone: z.string().transform((val) => xss(val)),
-        deleted: z.boolean().optional()
+        phone: z.string().transform((val) => xss(val))
     })
     .strict();
 
@@ -20,7 +19,6 @@ export const bookSchema = z
         title: z.string().transform((val) => xss(val)),
         author: z.string().transform((val) => xss(val)),
         year: z.string().transform((val) => xss(val)),
-        deleted: z.boolean().optional(),
         libId: z.number().optional()
     })
     .strict();
