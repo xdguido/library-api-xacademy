@@ -31,6 +31,14 @@ export const userSchema = z
     })
     .strict();
 
+/**
+ * Express middleware that validates the request body against a given schema.
+ *
+ * @param {AnyZodObject} schema - The Zod schema to validate against.
+ * @param {boolean} isPartial - Specifies if the validation should treat the body as partial or not.
+ * @returns A Promise that resolves when the validation is complete.
+ * @throws An Exception if data is invalid
+ */
 export const validate =
     (schema: AnyZodObject, isPartial: boolean) =>
     async (req: Request, res: Response, next: NextFunction) => {

@@ -38,6 +38,12 @@ export class Exception extends Error {
     status: number;
     metaData?: object;
 
+    /**
+     * Creates an instance of the Exception class.
+     *
+     * @param {ErrorCode} code - The error code for the exception.
+     * @param {object | undefined} [metaData] - Optional metadata associated with the exception.
+     */
     constructor(code: ErrorCode, metaData?: object) {
         super(code);
         Object.setPrototypeOf(this, new.target.prototype);

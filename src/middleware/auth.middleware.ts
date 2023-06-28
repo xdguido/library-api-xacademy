@@ -22,6 +22,15 @@ passport.use(
     )
 );
 
+/**
+
+Validates a JSON Web Token (JWT) for authentication.
+@param {Request} req - The request object.
+@param {Response} res - The response object.
+@param {NextFunction} next - The next middleware function.
+@returns void
+@throws An Exception when there is an error during authentication or the user is not authorized.
+*/
 export const validateJwt = (req: Request, res: Response, next: NextFunction) => {
     return passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
         if (err) {

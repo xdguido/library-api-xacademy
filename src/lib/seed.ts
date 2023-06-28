@@ -2,6 +2,13 @@ import { sequelize } from '../config/db';
 import { userProvider } from '../providers';
 import { USERNAME, PASSWORD } from '../middleware/auth.middleware';
 
+/**
+ * Seeds the database by synchronizing models, creating a user, and logging the result.
+ *
+ * @async
+ * @function seed
+ * @returns void
+ */
 export async function seed() {
     try {
         await sequelize.sync({ force: true }); // Drops existing tables and re-creates them
