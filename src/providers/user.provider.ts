@@ -5,4 +5,8 @@ const getUser = async (username: string) => {
     return await User.findOne({ where: { username } });
 };
 
-export default { getUser };
+const createUser = async (usersData: UserTypes) => {
+    return await User.create(usersData);
+};
+
+export default { getUser, createUser };

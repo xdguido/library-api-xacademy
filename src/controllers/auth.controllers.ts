@@ -5,7 +5,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { body } = req;
         const token = await authServices.login(body);
-        res.json(token);
+        res.json({ token: token });
     } catch (err) {
         next(err);
     }
