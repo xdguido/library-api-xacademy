@@ -7,7 +7,7 @@
         "build": "tsc -p .",
         "start": "node dist/app.js",
         "dev": "nodemon --config nodemon.json --inspect src/app.ts",
-        "test": "jest"
+        "test": "jest --runInBand"
     },
     "keywords": [],
     "author": "Guido Gennari",

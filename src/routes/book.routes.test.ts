@@ -10,7 +10,7 @@ describe('Book Routes', () => {
         await seed();
     });
     afterAll(async () => {
-        await sequelize.sync({ force: true });
+        await sequelize.drop();
     });
 
     let createdBookId: number;
