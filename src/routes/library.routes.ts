@@ -1,15 +1,20 @@
 import { Router } from 'express';
 import { libraryControllers } from '../controllers';
-import { validate, librarySchema, bookSchema } from '../middleware';
+import { validate, validateJwt, librarySchema, bookSchema } from '../middleware';
 
 const router = Router();
 
-router.post('/', validate(librarySchema, false), libraryControllers.createLib);
+router.post('/', validateJwt, validate(librarySchema, false), libraryControllers.createLib);
 router.get('/', libraryControllers.getAll);
 router.get('/:libId', libraryControllers.getOne);
-router.put('/:libId', validate(librarySchema, true), libraryControllers.edit);
-router.delete('/:libId', libraryControllers.remove);
-router.get('/:libId/restore', libraryControllers.restore);
-router.post('/:libId/books', validate(bookSchema, true), libraryControllers.createBook);
+router.put('/:libId', validateJwt, validate(librarySchema, true), libraryControllers.edit);
+router.delete('/:libId', validateJwt, libraryControllers.remove);
+router.get('/:libId/restore', validateJwt, libraryControllers.restore);
+router.post(
+    '/:libId/books',
+    validateJwt,
+    validate(bookSchema, true),
+    libraryControllers.createBook
+);
 
 export default router;

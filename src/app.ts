@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import routes from './routes';
 import { initDB } from './config/db';
 import { seed } from './lib/seed';
-import { errorHandler } from './middleware/error.middleware';
+import { errorHandler } from './middleware';
 
 const app: Application = express();
 const port = process.env.PORT || 5000;
@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/library', routes.libraryRoute);
+app.use('/book', routes.bookRoute);
+app.use('/user', routes.authRoute);
 
 app.use(errorHandler);
 
